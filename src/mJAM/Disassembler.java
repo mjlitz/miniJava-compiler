@@ -234,7 +234,7 @@ public class Disassembler {
 		for (int addr = Machine.CB; addr < Machine.CT; addr++) {
 			
 			// generate instruction address
-			asmWrite(String.format("%3d  ", addr));
+			//asmWrite(String.format("%3d  ", addr));
 
 			// if this addr is a branch target, output label
 			if (addrToLabel.containsKey(addr))

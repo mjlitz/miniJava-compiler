@@ -45,7 +45,7 @@ public class Test
 		Machine.emit(Op.LOAD,Reg.OB,0);      // current value of count
 		Machine.emit(Op.LOAD,Reg.LB,-1);     // current value of k
 		Machine.emit(Prim.add);              // count + k
-		Machine.emit(Op.STORE,Reg.OB,0);     // update count
+		Machine.emit(Op.SW,Reg.OB,0);     // update count
 		
 		Machine.emit(Op.RETURN,0,0,1);       // return popping one caller arg (d = 1) 
 		                                     // and returning no value (n = 0)
