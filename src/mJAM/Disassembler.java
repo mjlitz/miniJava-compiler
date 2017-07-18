@@ -35,7 +35,7 @@ public class Disassembler {
 	/**
 	 * Writes the r-field of an instruction in the form "l<I>reg</I>r", where
 	 * l and r are the bracket characters to use.
-	 * @param leftbracket     the character to print before the register.
+	 * @param string     the character to print before the register.
 	 * @param r           the number of the register.
 	 * @param rightbracket    the character to print after the register.
 	 */
@@ -272,6 +272,7 @@ public class Disassembler {
 			objectFileName = args[0];
 		Disassembler d = new Disassembler(objectFileName);
 		d.disassemble();
+		System.out.println("Disassembly completed.");
 	}
 
 	/**
@@ -283,7 +284,7 @@ public class Disassembler {
 
 		// read object file into code store
 		if (objectFile.read()) {
-			System.out.println("Disassembler: unable to read object file"
+			System.out.println("Disassembler: unable to read object file "
 					+ objectFileName);
 			return true;
 		}

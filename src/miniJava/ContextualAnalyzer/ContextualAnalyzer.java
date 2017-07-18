@@ -317,6 +317,7 @@ public class ContextualAnalyzer implements Visitor<String,Object> {
 		//boolean staticAccess = md.isStatic;
         StatementList sl = md.statementList;
         Type returnType = null;
+        SourcePosition posn = new SourcePosition(0,0);
         int i = 0;
         for (Statement s: sl) {
         	i++;
@@ -324,10 +325,15 @@ public class ContextualAnalyzer implements Visitor<String,Object> {
         		System.out.println("------Statement "+i+"------");
         	ScopedTable temp = currentScope;
         	returnType = (Type) s.visit(this, null);
+        	posn = s.posn;
         	currentScope = temp;
         }
-        if (expectedType.typeKind != TypeKind.VOID && returnType == null) 
-        	reporter.reportTypeError("Expecting a return statement of type "+expectedType.typeKind);
+        if (returnType == null) {
+        	if (expectedType.typeKind != TypeKind.VOID) 
+        		reporter.reportTypeError("Expecting a return statement of type "+expectedType.typeKind);
+        	else
+        		md.statementList.add(new ReturnStmt(null,new SourcePosition(posn.line+1,posn.character)));
+        }
 		return null;
 	}
 

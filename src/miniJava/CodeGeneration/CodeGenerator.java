@@ -17,6 +17,7 @@ public class CodeGenerator implements Visitor<String,Object>{
 	ErrorReporter reporter;
 	String file;
 	int offset = 3;
+	//int varDecls = 0;
 	int codeAddr_main;
 	MethodDecl main;
 	boolean sys_out_println;
@@ -227,8 +228,13 @@ public class CodeGenerator implements Visitor<String,Object>{
 		Machine.emit(Op.PUSH,1);
 		stmt.initExp.visit(this, null);
 		stmt.varDecl.visit(this, null);
-		Machine.emit(Op.STORE,Reg.LB,offset);
-		offset++;
+		//varDecls++;
+		/*if (varDecls<8) {
+			Machine.emit(Op.LOADL,Reg.T,0);
+		} else {*/
+			Machine.emit(Op.STORE,Reg.LB,offset);
+			offset++;
+		//}
 		
 		return null;
 	}
@@ -278,7 +284,7 @@ public class CodeGenerator implements Visitor<String,Object>{
 
 	@Override
 	public Object visitReturnStmt(ReturnStmt stmt, String arg) {
-		// TODO Auto-generated method stub
+		Machine.emit(Op.RETURN);
 		return null;
 	}
 

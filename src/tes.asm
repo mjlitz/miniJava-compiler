@@ -4,11 +4,11 @@
        HALT   (0)   
 L10:   PUSH         1
        LOADL        1
-       STORE        3($sp)
+       STORE        3[LB]
        PUSH         1
        LOADL        4
        CALL         newarr  
-       STORE        4($sp)
+       STORE        4[LB]
        LOAD         3[LB]
        LOAD         4[LB]
        CALL         arraylen
@@ -43,3 +43,4 @@ L12:   LOAD         3[LB]
        STORE        3[LB]
        LOAD         3[LB]
        CALL         putintnl
+       RETURN (0)   0

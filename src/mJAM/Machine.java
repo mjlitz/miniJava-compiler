@@ -46,7 +46,10 @@ public final class Machine {
 	    LB,  // locals base
 	    HB,  // heap base
 	    HT,  // heap top
+	    t,	 // temporaries
+	    sp,	 // stack pointer
 	    OB;  // object base
+		
 	}
 	public static Reg [] intToReg = Reg.values();
 
